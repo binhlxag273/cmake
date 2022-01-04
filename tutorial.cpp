@@ -18,7 +18,6 @@ int main(int argc, char* argv[])
     else {
         double outputValue = mathFunction::CalLogExp(std::stod(argv[1]));
         std::cout << argv[1] << " is " << outputValue << "\n";
+        return 0;
     }
-
-    return 0;
 }
