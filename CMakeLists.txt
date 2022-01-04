@@ -5,6 +5,12 @@ project(Tutorial VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "{PROJECT_BINARY_DIR}")
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "{PROJECT_BINARY_DIR}")
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "{PROJECT_BINARY_DIR}")
+
+# option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
+
 option(USE_MYMATH "Use tutorial provided math implementation" ON)
 
 if (USE_MYMATH)
@@ -56,7 +62,7 @@ do_test(Tutorial 0.0001 "0.0001 is 0.01")
 #  CPack
 ##########################################################
 include(InstallRequiredSystemLibraries)
-set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_PACKAGE_VERSION_MAJOR "${Tutorial_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${Tutorial_VERSION_MINOR}")
 
