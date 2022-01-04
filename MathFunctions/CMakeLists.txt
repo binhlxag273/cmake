@@ -1,28 +1,27 @@
-add_library(MathFunctions STATIC mysqrt.cpp)
+add_library(MathFunctions mathFunction.cpp)
 
 target_include_directories(
     MathFunctions
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-include(CheckSymbolExists)
-check_symbol_exists(log "math.h" HAVE_LOG)
-check_symbol_exists(exp "math.h" HAVE_EXP)
-if(NOT (HAVE_LOG AND HAVE_EXP))
-  unset(HAVE_LOG CACHE)
-  unset(HAVE_EXP CACHE)
-  set(CMAKE_REQUIRED_LIBRARIES "m")
-  check_symbol_exists(log "math.h" HAVE_LOG)
-  check_symbol_exists(exp "math.h" HAVE_EXP)
-  if(HAVE_LOG AND HAVE_EXP)
-    target_link_libraries(MathFunctions PRIVATE m)
-  endif()
+option(USE_MYMATH "Use tutorial provided math implementation" ON)
+if (USE_MYMATH)
+	target_compile_definitions(MathFunctions PRIVATE "USE_MYMATH")
+
+	add_library(SqrtLibrary STATIC mysqrt.cpp)
+	target_include_directories(SqrtLibrary PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+
+	set_target_properties(SqrtLibrary PROPERTIES POSITION_INDEPENDENT_CODE ${BUILD_SHARED_LIBS})
+	target_link_libraries(MathFunctions PRIVATE SqrtLibrary)
 endif()
 
-# add compile definitions
-if (HAVE_LOG AND HAVE_EXP)
-    target_compile_definitions(MathFunctions PRIVATE "HAVE_LOG" "HAVE_EXP")
+target_compile_definitions(MathFunctions PRIVATE "EXPORTING_MYMATH")
+
+set(installable_libs MathFunctions)
+if (TARGET SqrtLibrary)
+	list(APPEND installable_libs SqrtLibrary)
 endif()
 
-install(TARGETS MathFunctions DESTINATION libs)
-install(FILES mysqrt.h DESTINATION include)
+install(TARGETS ${installable_libs} DESTINATION libs)
+install(FILES mathFunction.h mysqrt.h DESTINATION include)

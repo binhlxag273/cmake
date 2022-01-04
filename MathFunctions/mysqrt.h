@@ -1,17 +1,11 @@
-#ifndef __MATH_FUNCTIONS_MYSQRT_H__
-#define __MATH_FUNCTIONS_MYSQRT_H__
+#ifndef __MATH_FUNCTION_MYSQRT_H__
+#define __MATH_FUNCTION_MYSQRT_H__
 
-#if defined(_WIN32)
-#  if defined(EXPORTING_MYMATH)
-#    define DECLSPEC __declspec(dllexport)
-#  else
-#    define DECLSPEC __declspec(dllimport)
-#  endif
-#else // non windows
-#  define DECLSPEC
-#endif
+namespace mathFunction {
+namespace detail {
+    double CalSqrt(double x);
+    double CalLogExp(double x);
+}
+}
 
-double CalSqrt(double x);
-double CalLogExp(double x);
-
-#endif //__MATH_FUNCTIONS_MYSQRT_H__
+#endif //__MATH_FUNCTION_MYSQRT_H__

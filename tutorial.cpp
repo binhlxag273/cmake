@@ -4,11 +4,7 @@
 
 #include "TutorialConfig.h"
 
-#ifdef USE_MYMATH
-#   include "MathFunctions/mysqrt.h"
-#else
-#   include <math.h>
-#endif
+#include "MathFunctions/mathFunction.h"
 
 int main(int argc, char* argv[])
 {
@@ -20,7 +16,7 @@ int main(int argc, char* argv[])
         return 1;
     }
     else {
-        double outputValue = CalLogExp(std::stod(argv[1]));
+        double outputValue = mathFunction::CalLogExp(std::stod(argv[1]));
         std::cout << argv[1] << " is " << outputValue << "\n";
     }
 
