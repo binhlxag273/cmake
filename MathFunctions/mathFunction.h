@@ -7,8 +7,8 @@
 #  elif defined(MATH_SHARED)
 #    define API_MATH __declspec(dllimport)
 #  endif
-#else // non windows
-#   if defined(MATH_SHARED)
+#else
+#   if defined(MATH_EXPORT) || defined(MATH_SHARED)
 #       if defined(__GNUC__) || defined(__clang__)
 #           define API_MATH __attribute__((visibility("default")))
 #       endif
