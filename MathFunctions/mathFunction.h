@@ -2,18 +2,25 @@
 #define __MATH_FUNCTION_MATH_FUNCTION_H__
 
 #if defined(_WIN32)
-#  if defined(EXPORTING_MYMATH)
-#    define DECLSPEC __declspec(dllexport)
+#  if defined(MATH_SHARED)
+#    define API_MATH __declspec(dllexport)
 #  else
-#    define DECLSPEC __declspec(dllimport)
+#    define API_MATH __declspec(dllimport)
 #  endif
 #else // non windows
-#  define DECLSPEC
+#   if defined(MATH_SHARED)
+#       if defined(__GNUC__) || defined(__clang__)
+#           define API_MATH __attribute__((visibility("default")))
+#       endif
+#   endif
+#endif
+#ifndef API_MATH
+#   define API_MATH
 #endif
 
 namespace mathFunction {
-    double DECLSPEC CalSqrt(double x);
-    double DECLSPEC CalLogExp(double x);
+    double API_MATH CalSqrt(double x);
+    double API_MATH CalLogExp(double x);
 }
 
 #endif //__MATH_FUNCTION_MATH_FUNCTION_H__

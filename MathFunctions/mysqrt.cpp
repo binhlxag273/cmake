@@ -1,5 +1,6 @@
 #include "mysqrt.h"
 
+#include <math.h>
 #include <iostream>
 
 namespace mathFunction{

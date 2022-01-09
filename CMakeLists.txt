@@ -10,6 +10,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
+option(USE_MYMATH "Use tutorial provided math implementation" ON)
 
 configure_file(TutorialConfig.h.in TutorialConfig.h)
 add_subdirectory(MathFunctions)
