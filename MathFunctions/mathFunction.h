@@ -2,9 +2,9 @@
 #define __MATH_FUNCTION_MATH_FUNCTION_H__
 
 #if defined(_WIN32)
-#  if defined(FMT_EXPORT)
+#  if defined(MATH_EXPORT)
 #    define API_MATH __declspec(dllexport)
-#  elif defined(FMT_SHARED)
+#  elif defined(MATH_SHARED)
 #    define API_MATH __declspec(dllimport)
 #  endif
 #else // non windows
