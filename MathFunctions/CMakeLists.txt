@@ -7,7 +7,7 @@ if (USE_MYMATH)
 endif()
 
 if (BUILD_SHARED_LIBS)
-	target_compile_definitions(MathFunctions PRIVATE MATH_SHARED)
+	target_compile_definitions(MathFunctions PRIVATE MATH_EXPORT INTERFACE MATH_SHARED)
 endif()
 
 install(TARGETS MathFunctions DESTINATION libs)
